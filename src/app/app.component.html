@@ -1,8 +1,9 @@
-<div class="container login_bg dawn"
-[ngClass]="['container--'+ (currentTemp<15?'cold':'warm')]"
+<div class="container"
+[ngClass]="[userExist?'weather':' login_bg' + ' container--'+ (currentTemp<15?'cold':'warm')]"
 >
   <div class="data-container">
-    <app-login-form></app-login-form>
+    <app-login-form *ngIf="!userExist"></app-login-form>
+    <app-weather-page *ngIf="userExist" ></app-weather-page>
   </div>
 
 </div>
