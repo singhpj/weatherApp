@@ -7,10 +7,12 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./weather-page.component.scss']
 })
 export class WeatherPageComponent implements OnInit {
-  location: string = ''
+  location: {city:'', lan:'', lat:''} = undefined;
   storedLocation:string | null=''
   loading: boolean = false
   weatherData: weatherDataModel | null = null;
+  cityList:{loading:boolean, list:Array<any>} ={loading:false, list:[]}
+
   constructor(private webApi: WebServiceService) {
    this.storedLocation =  localStorage.hasOwnProperty('city') ?localStorage.getItem('city'):''
   }
@@ -20,10 +22,10 @@ export class WeatherPageComponent implements OnInit {
   }
   getCurrentWeather() {
     let searchedLocation: string|null =  ''
-    if (this.location?.trim() != '') {
-      searchedLocation = this.location;
+    if (this.location?.hasOwnProperty('city') && this.location?.city?.trim() != '') {
+      searchedLocation = this.location.city;
     } else if(this.storedLocation !=='' && this.storedLocation !== null){
-      searchedLocation = localStorage.getItem('lat')+','+localStorage.getItem('lon')
+      searchedLocation = localStorage.getItem('city') //'lat')+','+localStorage.getItem('lon')
     } else {
       localStorage.clear()
       alert('No Location Found')
@@ -31,23 +33,41 @@ export class WeatherPageComponent implements OnInit {
     }
     this.loading=  true;
     this.webApi.Get(
-      'getWeatherApi',searchedLocation
+      'getWeatherApi',searchedLocation+'?unitGroup=metric'
     ).then(result=>{
       console.log( result)
-      console.log( result?.locations[searchedLocation])
+      // console.log( result?.locations[searchedLocation])
+      console.log(searchedLocation)
       // if (result?.cod == 200) {
 
-        this.weatherData = result?.locations[searchedLocation]
+        this.weatherData = result //?.locations[searchedLocation]
       // } else {
         // alert(result?.message)
       // }
     },error => {
       if (error.status == 401 && error.error.condition.toLowerCase() == "false") {
-        // this._signalR.stopSignalRConnection();
+
         alert(error?.message)
         localStorage.clear();
       }
     })
+  }
+
+  searchCity(key: string) {
+    this.cityList.loading = true;
+    // this.webService.Get('getCityApi',key).then(res=>{
+    //   this.cityList.loading = false;
+    //   this.cityList.list=res
+    // })
+  }
+  displayFn(value?: any) {
+    if (value != '' && value != null) {
+      this.location['city'] = value.name //].get('userCity').setValue(value)
+      this.location['lat'] = value.latitude //].get('userCity').setValue(value)
+      this.location['lan'] = value.longitude //].get('userCity').setValue(value)
+    }
+    // return 'two'
+    return value ?  this.location?.city : undefined;
   }
 }
 

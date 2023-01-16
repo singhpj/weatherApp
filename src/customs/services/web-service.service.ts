@@ -14,6 +14,7 @@ export class WebServiceService {
   // private globalurl = 'http://api.openweathermap.org/data/2.5'
   // private apiKey = '&appid=15d7fd1fbdabd13f8acff294c2f2141c'
   constructor(private _httpClient: HttpClient) {}
+  private apiKey:string = '417b915bbcmshef1687688c31870p199ccejsn264e2fc9dbe4' 
 
   private apiURLS: { [key: string]: { url: string; options: any } } = {
     getCityApi: {
@@ -21,19 +22,19 @@ export class WebServiceService {
       options: {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key':
-            '417b915bbcmshef1687688c31870p199ccejsn264e2fc9dbe4',
+          'X-RapidAPI-Key': this.apiKey,
           'X-RapidAPI-Host': 'spott.p.rapidapi.com',
         },
       },
     },
     getWeatherApi: {
-      url: 'https://visual-crossing-weather.p.rapidapi.com/forecast?aggregateHours=24&contentType=json&unitGroup=metric&shortColumnNames=1&location=', //send csv lat,lon
+      url: 'https://bestweather.p.rapidapi.com/weather/', //send csv lat,lon 
+      // url: 'https://visual-crossing-weather.p.rapidapi.com/forecast?aggregateHours=24&contentType=json&unitGroup=metric&location=', //send csv lat,lon 
       options: {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': '417b915bbcmshef1687688c31870p199ccejsn264e2fc9dbe4',
-          'X-RapidAPI-Host': 'visual-crossing-weather.p.rapidapi.com'
+          'X-RapidAPI-Key': this.apiKey,
+          'X-RapidAPI-Host': 'bestweather.p.rapidapi.com'
         }
       }
     },

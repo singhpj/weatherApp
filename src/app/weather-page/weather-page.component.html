@@ -3,6 +3,11 @@
     <div class="user_details">
       <div class="city_input_container">
         <input placeholder="Search City" />
+        <!-- <button class="search_button mat-icon-1">
+          <span class="material-symbols-outlined size_24 pointer" [matTooltip]="weatherData.description">
+            search
+            </span>
+        </button> -->
       </div>
     </div>
     <div class="today_container">
@@ -13,7 +18,7 @@
               {{weatherData?.days[0]?.datetime+'T'+weatherData?.currentConditions?.datetime | date:'EEE dd MMM,yyyy hh:mm a'}}
             </span>
             <span style="color: white;">
-              {{weatherData?.resolvedAddress}}
+              {{weatherData?.resolvedAddress}} ({{weatherData?.address | titlecase}})
             </span>
 
           </div>
@@ -28,7 +33,12 @@
         <div class="today_data">
           <div class="today_temp">
             <h1>{{weatherData?.currentConditions?.temp}}°</h1>
-            <h5 style="margin: 0; font-weight: 100;">{{weatherData?.currentConditions?.conditions}}</h5>
+          <h5 style="margin: 0; font-weight: 100;">{{weatherData?.currentConditions?.conditions}}
+            <span class="material-symbols-outlined size_12 pointer" [matTooltip]="weatherData.description">
+              info
+              </span>
+            </h5>
+          
           </div>
           <!-- <div class="today_humidity"></div> -->
         </div>
@@ -81,7 +91,11 @@
               <img [ngClass]="['mat-icon-3 _'+day?.icon]" />
               <h1>{{day.temp}}°</h1>
             </div>
-            <span>{{day?.conditions}}</span>
+            <span>{{day?.conditions}} 
+              <span class="material-symbols-outlined size_12 pointer" [matTooltip]="day?.description  ">
+                info
+                </span>
+            </span>
           </div>
           <mat-divider vertical></mat-divider>
           <div class="forcast_extra_dets">

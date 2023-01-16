@@ -8,14 +8,47 @@ body{
   //font-family: 'Roboto', sans-serif;
   font-family: 'Poppins', sans-serif;
 
-  ::-webkit-scrollbar{
-    width: 0px;
-    height: 0px;
+  ::-webkit-scrollbar {
+    height: 2px;
+    width: 2px;
+    
   }
+  *:hover::-webkit-scrollbar{
+    height: 4px;
+    width: 4px;
 
+  }
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+
+  *::-webkit-scrollbar-thumb{
+    border-radius: 16px;
+    background-color: rgba(black, 0.5) 
+  }
 
 }
 
+.material-symbols-outlined {
+  &.size_12{
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 12;
+    font-size: 12px
+  }
+  &.size_24{
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+    font-size: 24px
+  }
+
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 

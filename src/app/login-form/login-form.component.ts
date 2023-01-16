@@ -41,7 +41,6 @@ export class LoginFormComponent implements OnInit {
     //   this.cityList.loading = false;
     //   this.cityList.list=res
     // })
-    // getCityApi
   }
   displayFn(value?: any) {
     if (value != '' && value != null) {
