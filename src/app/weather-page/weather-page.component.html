@@ -1,40 +1,132 @@
 <div id="weather" class="day">
-    <div class="weather_container">
-        <div class="user_details">
-            <div class="city_input_container">
-                <input placeholder="Search City"/>
-            </div>
-        </div>
-        <div class="today_container">
-            <div class="temp_details">
-                <div class="weather_icon_container" 
-                [ngStyle]="{'background-image': 'url(../../assets/sun.png)'}">
-                    <!-- <img src="../../assets/sun.png"/> -->
-                    <!-- <h2 style="margin: 0;">Cloudy</h2> -->
-                    <!-- <span class="current_location">NOIDA</span> -->
-                </div>
-                <div class="today_data">
-                    <div class="today_temp">
-                        <h1>15°</h1>
-                        <h2 style="margin: 0;">Cloudy</h2>
-                    </div>
-                    <div class="today_humidity"></div>
-                </div>
-            </div>
-            <div class="today_extra_dets">
-                <div class="today_dets">
-                    Hello
-                </div>
-                <div class="today_dets">
-                    Hello
-                </div>
-                <div class="today_dets">
-                    Hello
-                </div>
-                <div class="today_dets">
-                    Hello
-                </div>
-            </div>
-        </div>
+  <div class="weather_container">
+    <div class="user_details">
+      <div class="city_input_container">
+        <input placeholder="Search City" />
+      </div>
     </div>
+    <div class="today_container">
+      <div class="temp_details">
+        <div class="weather_icon_container">
+          <div class="loc_date_cont">
+            <span style="color: white;">
+              {{weatherData?.days[0]?.datetime+'T'+weatherData?.currentConditions?.datetime | date:'EEE dd MMM,yyyy hh:mm a'}}
+            </span>
+            <span style="color: white;">
+              {{weatherData?.resolvedAddress}}
+            </span>
+
+          </div>
+
+          <!-- [ngStyle]="{'background-image': 'url(../assets/weather_icon/clear_d)'}"> -->
+          <img [ngClass]="['_'+weatherData?.currentConditions?.icon]" />
+          <!-- <h2 style="margin: 0;">Cloudy</h2> -->
+
+          <!-- <span class="current_location">NOIDA</span> -->
+
+        </div>
+        <div class="today_data">
+          <div class="today_temp">
+            <h1>{{weatherData?.currentConditions?.temp}}°</h1>
+            <h5 style="margin: 0; font-weight: 100;">{{weatherData?.currentConditions?.conditions}}</h5>
+          </div>
+          <!-- <div class="today_humidity"></div> -->
+        </div>
+      </div>
+      <div class="today_extra_dets">
+        <div class="today_dets">
+          <div class="dets">
+            <span class="mat-icon-1 _minTemp"></span>
+            <span class="det_val">{{weatherData?.days[0]?.tempmin}}°</span>
+          </div>
+          <div class="det_title">Min Temp</div>
+
+
+        </div>
+        <mat-divider vertical></mat-divider>
+        <div class="today_dets">
+          <div class="dets">
+            <span class="mat-icon-1 _maxTemp"></span>
+            <span class="det_val">{{weatherData?.days[0]?.tempmax}}°</span>
+          </div>
+          <div class="det_title">Max Temp</div>
+        </div>
+
+        <mat-divider class="sm-hide" vertical></mat-divider>
+
+        <div class="today_dets">
+          <div class="dets">
+            <span class="mat-icon-1 _humidity"></span>
+            <span class="det_val">{{weatherData?.currentConditions?.humidity}}</span>
+          </div>
+          <div class="det_title">Humidity</div>
+        </div>
+        <mat-divider vertical></mat-divider>
+
+        <div class="today_dets">
+          <div class="dets">
+            <span class="mat-icon-1 _wind"></span>
+            <span class="det_val">{{weatherData?.currentConditions?.windspeed}}</span>
+
+          </div>
+          <div class="det_title">Wind Speed</div>
+        </div>
+      </div>
+    </div>
+    <section class="forcast_container">
+      <div class="day_card" *ngFor="let day of weatherData?.days;let first = first" [ngClass]="{ first: first}">
+        <div class="forcast_data">
+          <div class="forcast_temp">
+            <div class="temp_icon">
+              <img [ngClass]="['mat-icon-3 _'+day?.icon]" />
+              <h1>{{day.temp}}°</h1>
+            </div>
+            <span>{{day?.conditions}}</span>
+          </div>
+          <mat-divider vertical></mat-divider>
+          <div class="forcast_extra_dets">
+            <!-- <div class="today_extra_dets"> -->
+              <div class="det_row">
+              <div class="forcast_dets">
+                <div class="dets">
+                  <span class="mat-icon-1 _minTemp"></span>
+                  <span class="det_val">{{day?.tempmin}}°</span>
+                </div>
+                <div class="det_title">Min Temp</div>
+
+
+              </div>
+              <div class="forcast_dets">
+                <div class="dets">
+                  <span class="mat-icon-1 _maxTemp"></span>
+                  <span class="det_val">{{day?.tempmax}}°</span>
+                </div>
+                <div class="det_title">Max Temp</div>
+              </div>
+            </div>
+
+            <div class="det_row">
+              <div class="forcast_dets">
+                <div class="dets">
+                  <span class="mat-icon-1 _humidity"></span>
+                  <span class="det_val">{{day?.humidity}}</span>
+                </div>
+                <div class="det_title">Humidity</div>
+              </div>
+
+              <div class="forcast_dets">
+                <div class="dets">
+                  <span class="mat-icon-1 _wind"></span>
+                  <span class="det_val">{{day?.windspeed}}</span>
+
+                </div>
+                <div class="det_title">Wind Speed</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="daily_date">{{day?.datetime | date:'EEE dd MMM,yyyy'}}</span>
+      </div>
+    </section>
+  </div>
 </div>

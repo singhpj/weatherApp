@@ -12,39 +12,44 @@
       <mat-form-field color="primary" appearance="legacy">
         <mat-label>Name</mat-label>
         <input matInput formControlName="userName" placeholder="Enter Your Name"/>
-        <div matSuffix class="mat-icon-1"><img src="../../assets/user.png"></div>
-        <mat-hint *ngIf="userForm.get('userName')?.errors?.hasOwnProperty('required') 
+        <div matSuffix class="mat-icon-1_img "><img src="../../assets/user.png"></div>
+        <mat-hint *ngIf="userForm.get('userName')?.errors?.hasOwnProperty('required')
         && userForm.get('userName')?.errors?.['required']" color="warn">
-        <!-- <mat-icon>info</mat-icon> -->
+
         User Name Required</mat-hint>
-       
+
       </mat-form-field>
       <mat-form-field color="primary" appearance="legacy">
         <mat-label>Phone No</mat-label>
         <input  matInput formControlName="userPhone" placeholder="Enter Mobile No"/>
-        <div matSuffix class="mat-icon-1"><img src="../../assets/phone.png"></div>
-        <mat-hint *ngIf="userForm.get('userPhone')?.errors?.hasOwnProperty('required') 
-        && userForm.get('userPhone')?.errors?.['required']" color="warn">
-        <!-- <mat-icon>info</mat-icon> -->
-        Phone No Required</mat-hint>
+        <div matSuffix class="mat-icon-1_img " ><img src="../../assets/phone.png"></div>
+        <mat-hint *ngIf="userForm.get('userPhone')?.errors?.hasOwnProperty('required')&& userForm.get('userPhone')?.errors?.['required']" color="warn">Phone No Required</mat-hint>
+        <mat-hint *ngIf="!userForm.get('userPhone')?.errors?.hasOwnProperty('pattern') && userForm.get('userPhone')?.errors?.hasOwnProperty('minlength')&& userForm.get('userPhone')?.errors?.['minlength']" color="warn">Phone No to short</mat-hint>
+        <mat-hint *ngIf="!userForm.get('userPhone')?.errors?.hasOwnProperty('pattern') && userForm.get('userPhone')?.errors?.hasOwnProperty('maxlength')&& userForm.get('userPhone')?.errors?.['maxlength']" color="warn">Phone No too long</mat-hint>
+        <mat-hint *ngIf="userForm.get('userPhone')?.errors?.hasOwnProperty('pattern')&& userForm.get('userPhone')?.errors?.['pattern']" color="warn">Phone No Can Only have numbers</mat-hint>
 
       </mat-form-field>
       <mat-form-field color="primary" appearance="legacy">
         <mat-label>Email</mat-label>
         <input  matInput formControlName="userEmail" placeholder="Enter Email Id"/>
-        <div matSuffix class="mat-icon-1"><img src="../../assets/email.png"></div>
-        <mat-hint *ngIf="userForm.get('userEmail')?.errors?.hasOwnProperty('required') 
+        <div matSuffix class="mat-icon-1_img "><img src="../../assets/email.png"></div>
+        <mat-hint *ngIf="userForm.get('userEmail')?.errors?.hasOwnProperty('required')
         && userForm.get('userEmail')?.errors?.['required']" color="warn">
-        <!-- <mat-icon>info</mat-icon> -->
+
         Email Required</mat-hint>
       </mat-form-field>
-      <mat-form-field color="primary" appearance="legacy">
+      <mat-form-field color="primary" appearance="legacy" [class.data_loading]="cityList.loading">
         <mat-label>City</mat-label>
-        <input  matInput formControlName="userCity" placeholder="Entery Your City"/>
-        <div matSuffix class="mat-icon-1"><img src="../../assets/location.png"></div>
-        <mat-hint *ngIf="userForm.get('userCity')?.errors?.hasOwnProperty('required') 
+        <input  matInput autocomplete="off"
+        (blur)="resetValue(cityInput)"
+        [matAutocomplete]="cityAutoComplete" #cityInput (input)="searchCity(cityInput.value)"
+         placeholder="Enter Your City"/>
+        <mat-autocomplete  #cityAutoComplete="matAutocomplete" [displayWith]="displayFn.bind(this)">
+          <mat-option [value]="city" *ngFor="let city of cityList?.list">{{city?.name}}, {{city?.country?.name}}</mat-option>
+        </mat-autocomplete>
+        <div matSuffix class="mat-icon-1_img "><img src="../../assets/location.png"></div>
+        <mat-hint *ngIf="userForm.get('userCity')?.errors?.hasOwnProperty('required')
         && userForm.get('userCity')?.errors?.['required']" color="warn">
-        <!-- <mat-icon>info</mat-icon> -->
         City Name Required</mat-hint>
 
       </mat-form-field>

@@ -1,0 +1,20 @@
+{
+  "01d":"/src/assets/weather_icons/clear_d",
+  "02d":"/src/assets/weather_icons/cloudy_d",
+  "03d":"/src/assets/weather_icons/cast_d",
+  "04d":"/src/assets/weather_icons/broken_d",
+  "09d":"/src/assets/weather_icons/shower",
+  "010d":"/src/assets/weather_icons/rain",
+  "011d":"/src/assets/weather_icons/thunder",
+  "013d":"/src/assets/weather_icons/snow",
+  "050d":"/src/assets/weather_icons/mist",
+  "01n":"/src/assets/weather_icons/clear_n",
+  "02n":"/src/assets/weather_icons/cloudy_n",
+  "03n":"/src/assets/weather_icons/cast_n",
+  "04n":"/src/assets/weather_icons/broken_n",
+  "09n":"/src/assets/weather_icons/shower",
+  "010n":"/src/assets/weather_icons/rain",
+  "011n":"/src/assets/weather_icons/thunder",
+  "013n":"/src/assets/weather_icons/snow",
+  "050n":"/src/assets/weather_icons/mist"
+}

@@ -7,7 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { LoginFormComponent } from './login-form.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatAutocompleteModule } from '@angular/material/autocomplete'
+import { MatProgressBarModule } from '@angular/material/progress-bar'
 @NgModule({
   declarations: [
     LoginFormComponent
@@ -18,9 +19,11 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     MatTooltipModule,
     MatIconModule,
+    MatAutocompleteModule,
+    MatProgressBarModule
   ],
   exports: [
     LoginFormComponent

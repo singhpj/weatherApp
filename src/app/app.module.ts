@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginFormModule } from './login-form/login-form.module';
 import { WeatherPageModule } from './weather-page/weather-page.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { WeatherPageModule } from './weather-page/weather-page.module';
     LoginFormModule,
     WeatherPageModule,
     BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

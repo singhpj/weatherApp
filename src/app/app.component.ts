@@ -9,15 +9,13 @@ export class AppComponent {
   title = 'weatherApp';
   currentTemp:number = 20
   // userExist:boolean = false;
-  constructor(){
-    this.checkValues()
+  constructor() {
+  }
+  public get userExist(){
+    return localStorage.hasOwnProperty('city') && localStorage.getItem('city') != ''
+      && localStorage.hasOwnProperty('lon') && localStorage.getItem('lan') != ''
+      && localStorage.hasOwnProperty('lat') && localStorage.getItem('lot') != '';
   }
 
-  checkValues(){
-    // this.userExist = localStorage.hasOwnProperty('userName') && localStorage.getItem('userName') != '';
-  }
-  get userExist(){
-    return localStorage.hasOwnProperty('userName') && localStorage.getItem('userName') != '';
-  }
 
 }

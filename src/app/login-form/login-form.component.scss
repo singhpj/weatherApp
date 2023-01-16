@@ -48,14 +48,6 @@
     }
   }
 
-  .mat-icon{
-    padding: 2px;
-    margin: 2px;
-    &-1 img{
-      height: 24px;
-      width: 24px;
-    }
-  }
   .submit_button{
     width: max( 300px, 60%);
     max-width: 80%;
@@ -63,7 +55,39 @@
   }
   }
 
- 
+
+  .data_loading{
+      .mat-form-field-underline{
+        height:5px;
+        border: none;
+        background-image: linear-gradient(to right, #283593,lightgrey,lightgrey);
+        animation: colorAnimation 0.60s  infinite;
+      }
+    }
+
+    @keyframes colorAnimation {
+      0%{
+        background-image: linear-gradient(to right, #283593,lightgrey,lightgrey,lightgrey ,lightgrey);
+      }
+      20%{
+        background-image: linear-gradient(to right, #283593,#283593,lightgrey,lightgrey,lightgrey);
+
+      }
+      40%{
+        background-image: linear-gradient(to right, lightgrey, #283593,#283593,lightgrey,lightgrey);
+      }
+      60%{
+        background-image: linear-gradient(to right, lightgrey,lightgrey,#283593,#283593,lightgrey);
+
+      }
+      80%{
+        background-image: linear-gradient(to right, lightgrey,lightgrey,lightgrey,#283593,#283593,);
+
+      }
+      100%{
+        background-image: linear-gradient(to right, lightgrey,lightgrey,lightgrey,lightgrey,#283593);
+      }
+    }
 }
 @media screen and  (max-height: 550px){
   .profile_pic{
